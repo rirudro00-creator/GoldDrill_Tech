@@ -18,11 +18,33 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 
+enum class AuthStage {
+    WELCOME,
+    PHONE_VERIFY,
+    LOCATION_PERMISSION,
+    MAIN_APP
+}
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainAppNavigation()
+            var currentStage by remember { mutableStateOf(AuthStage.WELCOME) }
+
+            when (currentStage) {
+                AuthStage.WELCOME -> {
+                    WelcomeScreen(onGetStartedClick = { currentStage = AuthStage.PHONE_VERIFY })
+                }
+                AuthStage.PHONE_VERIFY -> {
+                    PhoneLoginScreen(onVerifySuccess = { currentStage = AuthStage.LOCATION_PERMISSION })
+                }
+                AuthStage.LOCATION_PERMISSION -> {
+                    LocationPermissionScreen(onPermissionGranted = { currentStage = AuthStage.MAIN_APP })
+                }
+                AuthStage.MAIN_APP -> {
+                    MainAppNavigation()
+                }
+            }
         }
     }
 }
@@ -69,7 +91,7 @@ fun MainAppNavigation() {
                 when (currentTab) {
                     Screen.Home -> MarketScreen(onItemClick = { selectedMarketItem = it })
                     Screen.Maps -> MapScreen()
-                    Screen.Chats -> ChatScreen() // Renders active chat tab
+                    Screen.Chats -> ChatScreen()
                     else -> ScreenPlaceholder(currentTab.title)
                 }
             }

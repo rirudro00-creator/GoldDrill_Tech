@@ -23,7 +23,7 @@ object SampleData {
             sellerName = "Mohamed El Mokhtar",
             manufacturer = "Bosch Power Tools",
             year = "2023",
-            imageUrl = "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600",
+            imageUrl = R.drawable.jackhammer,
             description = "Heavy-duty 2000W breaker jackhammer with built-in vibration control. Engineered for breaking tough granite, quartz rock formations, and concrete foundations in mining sites."
         ),
         MarketItem(
@@ -35,7 +35,7 @@ object SampleData {
             sellerName = "Chinguetti Mining Equipment Co.",
             manufacturer = "Sahara Heavy Industries",
             year = "2024",
-            imageUrl = "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=600",
+            imageUrl = R.drawable.wash_plant,
             description = "High-efficiency diesel-driven mobile trommel wash plant. Includes fine gold sluice riffle mats, high-pressure water pump system, and continuous material processing up to 30 tons per hour."
         )
     )
